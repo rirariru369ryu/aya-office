@@ -1,25 +1,79 @@
-<!doctype html><html lang='ja'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1,viewport-fit=cover'><meta name='theme-color' content='#0f766e'><meta name='apple-mobile-web-app-capable' content='yes'><meta name='apple-mobile-web-app-status-bar-style' content='default'><meta name='apple-mobile-web-app-title' content='AYA Office'><link rel='apple-touch-icon' href='icon.png'><link rel='manifest' href='manifest.webmanifest'><title>AYA Office</title><style>:root{--j:#0f766e;--p:#eef8f4;--g:#c7a24c;--t:#20322f}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;background:linear-gradient(160deg,#edf7f3,#fbf6ea);color:var(--t)}main{max-width:480px;margin:auto;min-height:100vh;padding:calc(18px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom))}.card{background:#fffdf9;border:1px solid #e8dfcf;border-radius:28px;padding:18px;box-shadow:0 14px 40px #315c501a}.head{display:flex;align-items:center;gap:12px}.head img{width:62px;height:62px;border-radius:18px;object-fit:cover}.head small{letter-spacing:.22em;color:#71817d}.head h1{margin:3px 0;font-size:25px}.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:18px 0}.tabs button{border:0;border-radius:14px;padding:10px 3px;background:#edf2f0}.tabs button.on{background:#d9f1e9;color:#08655e;font-weight:700}.panel{display:none}.panel.on{display:block}.box{background:#f4f8f6;border-radius:18px;padding:14px;margin-bottom:12px}textarea,input{width:100%;border:1px solid #d6dfdc;background:white;border-radius:13px;padding:12px;font:inherit;margin-top:8px}textarea{height:96px;resize:vertical}.btn{width:100%;border:0;border-radius:14px;padding:13px;margin-top:9px;background:var(--j);color:#fff;font-weight:700}.chat{display:grid;gap:8px;margin-top:10px}.bubble{background:#fff;border-left:3px solid var(--g);border-radius:12px;padding:10px}.result{white-space:pre-wrap;line-height:1.65}.row{display:flex;gap:7px}.row>*{flex:1}.item{display:flex;justify-content:space-between;background:#fff;border-radius:12px;padding:10px;margin-top:8px}.muted{color:#75827f;font-size:12px}.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.day{min-height:48px;background:#fff;border-radius:9px;padding:4px;text-align:center;font-size:11px}.footer{text-align:center;color:#87938f;font-size:11px;margin-top:15px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.btn.sub{background:#fff;color:var(--j);border:1px solid var(--j)}.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}.kpi{background:#fff;border-radius:12px;padding:10px}.kpi b{display:block;font-size:18px;margin-top:3px}.plan{background:#fff;border-radius:12px;padding:12px;margin-top:8px;white-space:pre-wrap;line-height:1.6}.status{font-size:12px;color:#75827f;margin-top:8px}</style></head><body><main><div class='card'><div class='head'><img src='icon.png' alt='AYA Office'><div><small>WHITE DRAGON EDITION</small><h1>AYA Office</h1><div class='muted'>あや和結ひ AIチーム</div></div></div><div class='tabs'><button class='on' data-p='hq'>🏛<br>社長</button><button data-p='reel'>📸<br>リール</button><button data-p='voice'>🎙<br>台本</button><button data-p='cal'>📅<br>予定</button><button data-p='stock'>📦<br>在庫</button></div>
-<section id='hq' class='panel on'><div class='box'><b>社長からの指令</b><textarea id='mission' placeholder='例：新作の精麻ネックレスを販売して、利益を伸ばして'></textarea><button class='btn' id='dispatch'>全社員へ指示する</button><div class='status'>指令後は、社員同士で会議→企画→制作案→経営チェック→改善まで自動で進みます。</div></div><div class='box'><b>社員会議</b><div id='chat' class='chat'><div class='bubble'>🏛 社長室ソラ「おはようございます。指令をお待ちしています🌿」</div></div><div id='hqActions'></div><div id='deliverable'></div></div></section>
+<!doctype html><html lang='ja'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1,viewport-fit=cover'><meta name='theme-color' content='#0f766e'><meta name='apple-mobile-web-app-capable' content='yes'><meta name='apple-mobile-web-app-status-bar-style' content='default'><meta name='apple-mobile-web-app-title' content='AYA Office'><link rel='apple-touch-icon' href='icon.png'><link rel='manifest' href='manifest.webmanifest'><title>AYA Office</title><style>:root{--j:#0f766e;--p:#eef8f4;--g:#c7a24c;--t:#20322f}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;background:linear-gradient(160deg,#edf7f3,#fbf6ea);color:var(--t)}main{max-width:480px;margin:auto;min-height:100vh;padding:calc(18px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom))}.card{background:#fffdf9;border:1px solid #e8dfcf;border-radius:28px;padding:18px;box-shadow:0 14px 40px #315c501a}.head{display:flex;align-items:center;gap:12px}.head img{width:62px;height:62px;border-radius:18px;object-fit:cover}.head small{letter-spacing:.22em;color:#71817d}.head h1{margin:3px 0;font-size:25px}.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:18px 0}.tabs button{border:0;border-radius:14px;padding:10px 3px;background:#edf2f0}.tabs button.on{background:#d9f1e9;color:#08655e;font-weight:700}.panel{display:none}.panel.on{display:block}.box{background:#f4f8f6;border-radius:18px;padding:14px;margin-bottom:12px}textarea,input{width:100%;border:1px solid #d6dfdc;background:white;border-radius:13px;padding:12px;font:inherit;margin-top:8px}textarea{height:96px;resize:vertical}.btn{width:100%;border:0;border-radius:14px;padding:13px;margin-top:9px;background:var(--j);color:#fff;font-weight:700}.chat{display:grid;gap:8px;margin-top:10px}.bubble{background:#fff;border-left:3px solid var(--g);border-radius:12px;padding:10px}.result{white-space:pre-wrap;line-height:1.65}.row{display:flex;gap:7px}.row>*{flex:1}.item{display:flex;justify-content:space-between;background:#fff;border-radius:12px;padding:10px;margin-top:8px}.muted{color:#75827f;font-size:12px}.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.day{min-height:48px;background:#fff;border-radius:9px;padding:4px;text-align:center;font-size:11px}.footer{text-align:center;color:#87938f;font-size:11px;margin-top:15px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.btn.sub{background:#fff;color:var(--j);border:1px solid var(--j)}.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}.kpi{background:#fff;border-radius:12px;padding:10px}.kpi b{display:block;font-size:18px;margin-top:3px}.plan{background:#fff;border-radius:12px;padding:12px;margin-top:8px;white-space:pre-wrap;line-height:1.6}.status{font-size:12px;color:#75827f;margin-top:8px}.final{background:linear-gradient(145deg,#fffdf9,#eef8f4);border:1px solid #d8e8e2;border-radius:16px;padding:14px;margin-top:10px;white-space:pre-wrap;line-height:1.65}.badge{display:inline-block;background:#d9f1e9;color:#08655e;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:700;margin-bottom:8px}.progress{height:8px;background:#e4ece9;border-radius:999px;overflow:hidden;margin-top:10px}.progress i{display:block;height:100%;width:0;background:var(--j);transition:width .3s}</style></head><body><main><div class='card'><div class='head'><img src='icon.png' alt='AYA Office'><div><small>WHITE DRAGON EDITION</small><h1>AYA Office</h1><div class='muted'>あや和結ひ AIチーム</div></div></div><div class='tabs'><button class='on' data-p='hq'>🏛<br>社長</button><button data-p='reel'>📸<br>リール</button><button data-p='voice'>🎙<br>台本</button><button data-p='cal'>📅<br>予定</button><button data-p='stock'>📦<br>在庫</button></div>
+<section id='hq' class='panel on'><div class='box'><b>社長からの指令</b><textarea id='mission' placeholder='例：新作の精麻ネックレスを販売して、利益を伸ばして'></textarea><button class='btn' id='dispatch'>全社員へ指示する</button><div class='status'>指令後は、社員同士で会議→企画→制作→販売設計→収益計算→改善を自動で進め、最後に社長へ完成報告します。</div><div class='progress'><i id='meetingProgress'></i></div></div><div class='box'><b>社員会議</b><div id='chat' class='chat'><div class='bubble'>🏛 社長室ソラ「おはようございます。指令をお待ちしています🌿」</div></div><div id='hqActions'></div><div id='deliverable'></div></div></section>
 <section id='reel' class='panel'><div class='box'><b>写真 → リール企画</b><input id='photo' type='file' accept='image/*'><img id='preview' style='display:none;width:100%;margin-top:10px;border-radius:14px'><textarea id='reelTopic' placeholder='写真について一言（例：中秋の名月に作った精麻しめ縄）'></textarea><button class='btn' id='makeReel'>15カット案を作る</button><div id='reelOut' class='result'></div></div></section>
 <section id='voice' class='panel'><div class='box'><b>AI音声用 台本</b><textarea id='voiceTopic' placeholder='テーマを入力'></textarea><button class='btn' id='makeVoice'>読み上げ台本を作る</button><div id='voiceOut' class='result'></div></div></section>
 <section id='cal' class='panel'><div class='box'><b>投稿カレンダー</b><div class='row'><input id='postDate' type='date'><input id='postTitle' placeholder='投稿名'></div><button class='btn' id='addPost'>予定を保存</button><div id='postList'></div></div></section>
-<section id='stock' class='panel'><div class='box'><b>作品・在庫・売上・利益</b><input id='itemName' placeholder='作品名'><div class='row'><input id='itemPrice' type='number' placeholder='販売価格'><input id='itemCost' type='number' placeholder='原価'></div><div class='row'><input id='itemQty' type='number' placeholder='在庫' value='1'><input id='monthlyTarget' type='number' placeholder='月の販売目標数'></div><button class='btn' id='addItem'>作品を登録</button><div id='stockList'></div><div id='sales'></div></div></section><div class='footer'>AYA Office v1.1 • 自動会議＋経営分析 • データはこの端末に保存</div></div></main><script>
+<section id='stock' class='panel'><div class='box'><b>作品・在庫・売上・利益</b><input id='itemName' placeholder='作品名'><div class='row'><input id='itemPrice' type='number' placeholder='販売価格'><input id='itemCost' type='number' placeholder='原価'></div><div class='row'><input id='itemQty' type='number' placeholder='在庫' value='1'><input id='monthlyTarget' type='number' placeholder='月の販売目標数'></div><button class='btn' id='addItem'>作品を登録</button><div id='stockList'></div><div id='sales'></div></div></section><div class='footer'>AYA Office v2.0 • 自律会議＋収益改善 • データはこの端末に保存</div></div></main><script>
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);$$('.tabs button').forEach(b=>b.onclick=()=>{$$('.tabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');$$('.panel').forEach(x=>x.classList.remove('on'));$('#'+b.dataset.p).classList.add('on')});
 const sleep=m=>new Promise(r=>setTimeout(r,m));
 function addBubble(m){let d=document.createElement('div');d.className='bubble';d.textContent=m;$('#chat').append(d);d.scrollIntoView({behavior:'smooth',block:'nearest'})}
-function makeDeliverable(task){let stockHint=stock.length?`現在の登録商品は${stock.length}点。実売データを見ながら利益率と販売数を比較します。`:'在庫画面に商品価格・原価・販売数を登録すると、次回から利益ベースで改善できます。';return `📌 実行プラン｜${task}
+function money(n){return '¥'+Math.round(n||0).toLocaleString()}
+function businessSnapshot(){
+  let revenue=0,cost=0,profit=0,targetProfit=0,units=0;
+  stock.forEach(s=>{let sold=s.sold||0,c=s.cost||0,t=s.target||0;revenue+=sold*s.price;cost+=sold*c;profit+=sold*(s.price-c);targetProfit+=t*(s.price-c);units+=sold});
+  let avgMargin=revenue?Math.round(profit/revenue*100):0;
+  return {revenue,cost,profit,targetProfit,units,avgMargin};
+}
+function makeDeliverable(task){
+  const b=businessSnapshot();
+  let productNote=stock.length
+    ? stock.map(s=>`${s.name}：販売価格 ${money(s.price)}／原価 ${money(s.cost||0)}／1個粗利 ${money(s.price-(s.cost||0))}／販売 ${s.sold||0}個`).join('\n')
+    : '商品データ未登録。販売価格・原価・在庫を登録すると、実数で利益改善を計算します。';
+  return `🏁 AYA Office 完成報告
+指令：${task}
 
-① 発信：作品の背景→制作過程→完成→使う場面の順でリール化
-② 販売：価格だけでなく、素材・制作時間・一点物の理由を商品ページへ
-③ 導線：リール→プロフィール→商品ページを一本化
-④ 検証：閲覧・反応・販売数・粗利を記録
-⑤ 改善：反応が弱ければ冒頭3秒と訴求を変更。売れても粗利が低ければ価格・原価を再検討
+【今回の完成案】
+① 商品：作品の背景・素材・制作意図を「買う理由」に変換
+② 発信：冒頭3秒→背景→制作→完成→使用場面→購入導線
+③ 販売：プロフィール→商品ページ→購入まで迷わない1本導線
+④ 検証：閲覧・保存・商品ページ遷移・販売数・粗利を記録
+⑤ 改善：一度に1項目だけ変更し、前回との差を比較
 
-💰 経営メモ：${stockHint}
+【経営チェック】
+実績売上：${money(b.revenue)}
+実績粗利益：${money(b.profit)}
+平均粗利率：${b.avgMargin}%
+月目標粗利：${money(b.targetProfit)}
 
-次の社長判断：この方針で進めるか、修正指示を出してください。`;}
-async function runMeeting(task,isRevision=false){$('#hqActions').innerHTML='';$('#deliverable').innerHTML='';if(!isRevision)$('#chat').innerHTML='';let msgs=[`🏛 社長室ソラ「${task}、受け付けました。ここから各部署で進めます」`,`🌿 企画ソラ「目的を整理。誰に、何を、なぜ届けるかを決めます」`,`🪢 作品ソラ「素材・制作意図・事実情報を整理しました」`,`🎥 監督ソラ「発信導線を設計。冒頭→背景→制作→完成→行動の流れにします」`,`🎨 美術ソラ「世界観を崩さず、商品が見える画面設計に調整します」`,`💰 経営ソラ「価格・原価・販売数・粗利を確認し、利益が残る案を優先します」`,`📈 分析ソラ「売上だけでなく粗利と反応を比較し、次に変える箇所を1つに絞ります」`,`🏛 社長室ソラ「各部署の案を統合しました。実行案まで作成します」`];for(let m of msgs){addBubble(m);await sleep(280)}let out=document.createElement('div');out.className='plan';out.textContent=makeDeliverable(task);$('#deliverable').append(out);$('#hqActions').innerHTML=`<div class='actions'><button class='btn' id='approve'>✨ この案で進める</button><button class='btn sub' id='revise'>✏️ 修正する</button></div>`;$('#approve').onclick=async()=>{addBubble('🏛 社長室ソラ「承認を確認。制作・販売・検証タスクへ移します」');await sleep(300);addBubble('🎥 監督ソラ「リール構成を制作工程へ回しました」');await sleep(250);addBubble('💰 経営ソラ「在庫画面の実績を基準に、販売後の利益を追跡します」');await sleep(250);addBubble('📈 分析ソラ「実績が増えるたびに改善ポイントを更新します」');$('#hqActions').innerHTML=`<button class='btn' id='again'>🔁 最新データで再改善する</button>`;$('#again').onclick=()=>runMeeting(task+'（最新の販売実績を反映して再改善）',true)};$('#revise').onclick=()=>{let r=prompt('どこを直したい？
-例：もっと販売につながる案にして');if(r)runMeeting(task+'／社長修正：'+r,true)}}
+【商品別メモ】
+${productNote}
+
+【次にやること】
+・今日：販売する主力商品を1つ決める
+・次：その商品のリールを1本作る
+・販売後：在庫画面で「販売」を記録
+・記録後：AYA Officeが利益データを使って次案を再改善
+
+🏛 社長室ソラ「各部署で検討・改善まで完了しました。社長には完成案だけ報告します✨」`;
+}
+async function runMeeting(task,isRevision=false){
+  $('#hqActions').innerHTML='';
+  $('#deliverable').innerHTML='';
+  if(!isRevision)$('#chat').innerHTML='';
+  const p=$('#meetingProgress'); if(p)p.style.width='0%';
+
+  const rounds=[
+    ['🏛 社長室ソラ「指令を受領。各部署に仕事を割り振ります」','🌿 企画ソラ「目的・お客様・商品の魅力を整理します」','🪢 作品ソラ「素材・制作意図・事実情報を整理し、誇張表現を外します」'],
+    ['🎥 監督ソラ「15カットの販売導線へ展開します」','🎨 美術ソラ「翡翠・生成り・金を軸に、商品が主役になる画面へ整えます」','🛍 販売ソラ「商品ページまでの導線と購入理由を組み立てます」'],
+    ['💰 経営ソラ「販売価格・原価・粗利・目標販売数を確認します」','📈 分析ソラ「利益を伸ばすため、変更点を1つに絞って比較します」','🔁 改善ソラ「企画と販売案へ改善内容を戻し、もう一度整えます」'],
+    ['🌿 企画ソラ「改善内容を反映しました」','💰 経営ソラ「再計算完了。利益が残る実行順に並べ替えました」','🏛 社長室ソラ「全部署の作業が完了。完成報告を作成します」']
+  ];
+  let done=0,total=rounds.flat().length;
+  for(const round of rounds){
+    for(const m of round){
+      addBubble(m); done++; if(p)p.style.width=Math.round(done/total*100)+'%'; await sleep(240);
+    }
+    await sleep(180);
+  }
+  let out=document.createElement('div');
+  out.className='final';
+  out.innerHTML="<span class='badge'>✨ 自動処理 完了</span><br>";
+  let text=document.createElement('span'); text.textContent=makeDeliverable(task); out.append(text);
+  $('#deliverable').append(out);
+  $('#hqActions').innerHTML=`<div class='actions'><button class='btn' id='again'>🔁 最新データで再改善</button><button class='btn sub' id='revise'>✏️ 社長から追加指示</button></div>`;
+  $('#again').onclick=()=>runMeeting(task+'（最新の販売実績を反映して再改善）',true);
+  $('#revise').onclick=()=>{let r=prompt('追加の指示を入力してください\\n例：もっと販売につながる案にして');if(r)runMeeting(task+'／追加指示：'+r,true)};
+}
 $('#dispatch').onclick=()=>{let task=$('#mission').value.trim()||'今週の販売と発信を改善して';runMeeting(task)};
 $('#photo').onchange=e=>{let f=e.target.files[0];if(!f)return;let u=URL.createObjectURL(f);$('#preview').src=u;$('#preview').style.display='block'};$('#makeReel').onclick=()=>{let t=$('#reelTopic').value.trim()||'この作品';let cuts=['作品全景','素材のアップ','手に取る瞬間','精麻の繊維','結び始め','手元の動き','途中の形','光に透かす','細部','完成直前','完成全景','身につける／飾る','自然光のカット','余韻の静止画','ブランド名＋短い言葉'];$('#reelOut').textContent=`🎬 ${t}\n\n${cuts.map((x,i)=>String(i+1).padStart(2,'0')+'｜'+x).join('\n')}\n\n字幕案：手で結ぶ時間も、作品の一部。`};$('#makeVoice').onclick=()=>{let t=$('#voiceTopic').value.trim()||'この作品';$('#voiceOut').textContent=`「${t}」。\nひとつひとつ、素材の表情を見ながら手で結びました。\n形だけではなく、その時間まで大切にしたい。\n日々の暮らしの中で、ふと心が静かになるような存在になりますように。`};
 let posts=JSON.parse(localStorage.getItem('aya_posts')||'[]');let stock=JSON.parse(localStorage.getItem('aya_stock')||'[]');function save(){localStorage.setItem('aya_posts',JSON.stringify(posts));localStorage.setItem('aya_stock',JSON.stringify(stock))}function renderPosts(){$('#postList').innerHTML=posts.sort((a,b)=>a.date.localeCompare(b.date)).map((p,i)=>`<div class='item'><span>${p.date}<br><b>${p.title}</b></span><button onclick='delPost(${i})'>削除</button></div>`).join('')||`<div class='muted' style='margin-top:10px'>予定はまだありません</div>`}window.delPost=i=>{posts.splice(i,1);save();renderPosts()};$('#addPost').onclick=()=>{if(!$('#postDate').value||!$('#postTitle').value.trim())return;posts.push({date:$('#postDate').value,title:$('#postTitle').value.trim()});save();renderPosts();$('#postTitle').value=''};
